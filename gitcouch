@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set CFG_ROOT to the *FULL PATH* of the directory in which GitCouch is installed
-CFG_ROOT=/Users/ivans/Documents/gitcouch
+CFG_ROOT=/home/Antoine.Cailly/_Projets/perso/GitCouch
 
 #
 # You should not need to modify anything beneath this line
