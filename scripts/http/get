@@ -9,6 +9,8 @@ function http_get_hello {
 
 
 function http_get_allDatabases {
+    utils_log "DEBUG http_get_allDatabases"
+
     git_clone
     util_http_generateResponse 200 "OK" "text/json"
 
@@ -100,25 +102,35 @@ function http_get_document {
 
 
 function http_handleGET {
+    utils_log "DEBUG http_handleGET"
+
     local database=${req_path_component[0]}
     local document=${req_path_component[1]}
 
+    utils_log "DEBUG database: $database"
+    utils_log "DEBUG document: $document"
+
     if [ "" == "$database" -a "" == "$document" ]; then
+    	utils_log "DEBUG hello"
 	http_get_hello
 
     elif [ "" != "$database" -a "" == "$document" ]; then
 	if [ "_all_dbs" == "$database" ]; then
+    	utils_log "DEBUG _all_dbs"
 	    http_get_allDatabases
 
 	else
+    	utils_log "DEBUG metainfo"
 	    http_get_databaseMetainfo $database
 	fi
 
     else
 	if [ "_all_docs" == "$document" ]; then
+    	utils_log "DEBUG _all_docs"
 	    http_get_documentList $database
 
 	else
+    	utils_log "DEBUG get_document"
 	    http_get_document $database $document
 	fi
     fi
